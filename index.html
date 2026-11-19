@@ -1,10 +1,86 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore Sariaya – Discover the Beauty of Quezon</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="stylesheet" href="style.css"></head>
 <body>
-    <h1>Hello Bitches watsup</h1>
-</body>
-</html>
+<header class="sticky top-0 z-[1500] bg-white/95 backdrop-blur shadow-sm">
+ <nav class="max-w-6xl mx-auto flex items-center justify-between p-3">
+  <a href="#top" class="font-bold text-lg" style="color:var(--g)">🌴 Explore Sariaya</a>
+  <div class="hidden md:flex gap-5 text-sm"><a href="#featured">Destinations</a><a href="#map-sec">Map</a><a href="#about">About</a><a href="#guide">Travel Guide</a><a href="#suggest">Suggest</a><a href="#contact">Contact</a></div>
+  <button class="md:hidden text-2xl" onclick="document.getElementById('mm').classList.toggle('hidden')" aria-label="Menu">☰</button>
+ </nav>
+ <div id="mm" class="hidden md:hidden px-4 pb-3 flex flex-col gap-2 text-sm"><a href="#featured">Destinations</a><a href="#map-sec">Map</a><a href="#about">About</a><a href="#guide">Travel Guide</a><a href="#suggest">Suggest</a><a href="#contact">Contact</a></div>
+</header>
+
+<section id="top" class="hero text-white text-center py-24 px-4">
+ <h1 class="text-4xl md:text-6xl font-bold mb-4">Discover the Beauty of Sariaya</h1>
+ <p class="max-w-2xl mx-auto text-lg mb-8">Explore hidden gems, breathtaking destinations, and the rich culture of Sariaya, Quezon.</p>
+ <a href="#map-sec" class="btn inline-block text-lg">Explore the Map</a>
+ <div class="max-w-md mx-auto mt-8"><input id="heroSearch" class="w-full rounded-full px-5 py-3 text-gray-800" placeholder="Search destinations…" aria-label="Search destinations"></div>
+</section>
+
+<section id="featured" class="max-w-6xl mx-auto px-4 py-16">
+ <h2 class="text-3xl font-bold mb-8" style="color:var(--g)">Featured Destinations</h2>
+ <div id="featGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
+</section>
+
+<section id="map-sec" class="max-w-6xl mx-auto px-4 pb-16">
+ <h2 class="text-3xl font-bold mb-2" style="color:var(--g)">Interactive Tourism Map</h2>
+ <p class="mb-4 text-gray-600">Every pin below uses coordinates published in public sources (Wikipedia cultural-property listings). Click a pin or a list item for details.</p>
+ <div class="flex flex-wrap gap-2 mb-3 items-center">
+  <input id="q" class="border rounded-full px-4 py-2 flex-1 min-w-[200px]" placeholder="Search destinations…" aria-label="Search">
+  <button class="chip on" id="vStd">Standard</button><button class="chip" id="vSat">Satellite</button><button class="chip" id="vFav">♥ Favorites</button>
+ </div>
+ <div id="chips" class="flex flex-wrap gap-2 mb-4"></div>
+ <div class="grid lg:grid-cols-[1fr_320px] gap-4">
+  <div id="map" role="application" aria-label="Map of Sariaya"></div>
+  <div id="list" class="bg-white rounded-2xl p-3 overflow-auto shadow" style="max-height:560px"></div>
+ </div>
+ <div id="pending" class="mt-6 bg-[var(--b)] rounded-2xl p-5"></div>
+</section>
+
+<section id="about" class="py-16" style="background:var(--b)">
+ <div class="max-w-4xl mx-auto px-4">
+  <h2 class="text-3xl font-bold mb-4" style="color:var(--g)">About Sariaya</h2>
+  <p class="mb-3">Sariaya is a municipality in the province of Quezon, in the Calabarzon region of Luzon, founded in 1599. It is widely known as the “Heritage Town of Quezon” and the “Art Deco Capital of Southern Luzon,” with more than a hundred cultural properties and ancestral houses, many in Art Deco style.</p>
+  <p class="mb-3">Mount Banahaw flanks the municipality on the north and Tayabas Bay lies to the south, so one town offers mountain trails, a coastline with beach resorts, and a historic town center. Agriculture is its major source of income.</p>
+  <p class="text-sm text-gray-600">Festival noted by the Sariaya tourism listing: Agawan Festival (May 15); Senakulo every Holy Wednesday. Confirm dates with the local tourism office.</p>
+ </div>
+</section>
+
+<section id="guide" class="max-w-6xl mx-auto px-4 py-16">
+ <h2 class="text-3xl font-bold mb-6" style="color:var(--g)">Suggested Itineraries</h2>
+ <div class="grid md:grid-cols-2 gap-6">
+  <div class="card p-6"><h3 class="font-bold text-xl mb-2">🏛️ Half-Day Heritage Walk</h3><ol class="list-decimal ml-5 space-y-1"><li>St. Francis of Assisi Parish Church</li><li>Gala-Rodriguez Ancestral House (Rizal St.)</li><li>Emralino-Rodriguez, Palabrica &amp; Francisco Rodriguez houses (Mabini / Bonifacio St.)</li><li>Don Catalino Rodriguez House (Villa Sariaya)</li><li>Mendoza, Barradas &amp; Panganiban houses</li></ol><button class="btn mt-4" onclick="showTag('heritage')">Show on map</button></div>
+  <div class="card p-6"><h3 class="font-bold text-xl mb-2">⛰️🏖️ Mountain &amp; Coast Day</h3><p>Plan a trail visit toward Mount Banahaw’s northern foothills (arrange via local tourism office), then head south to the Guis-Guis / Bignay beach-resort area. Check each resort’s current rates and hours directly.</p><button class="btn mt-4" onclick="showTag('mountain')">Show on map</button></div>
+ </div>
+</section>
+
+<section id="suggest" class="max-w-3xl mx-auto px-4 pb-16">
+ <h2 class="text-3xl font-bold mb-4" style="color:var(--g)">Suggest a Destination</h2>
+ <div class="card p-6 grid gap-3">
+  <input id="sName" class="border rounded-lg p-2" placeholder="Place name">
+  <input id="sLoc" class="border rounded-lg p-2" placeholder="Barangay / address / coordinates">
+  <textarea id="sWhy" class="border rounded-lg p-2" rows="3" placeholder="Why should visitors go?"></textarea>
+  <button class="btn" onclick="sendSuggest()">Submit suggestion</button><p id="sMsg" class="text-sm"></p>
+ </div>
+</section>
+
+<section id="contact" class="py-16 text-white" style="background:var(--br)">
+ <div class="max-w-3xl mx-auto px-4">
+  <h2 class="text-3xl font-bold mb-4">Contact &amp; Feedback</h2>
+  <div class="grid gap-3 text-gray-800">
+   <input id="cMail" class="rounded-lg p-2" placeholder="Your email"><textarea id="cMsg" class="rounded-lg p-2" rows="3" placeholder="Your feedback"></textarea>
+   <button class="btn" onclick="sendFeedback()">Send feedback</button><p id="cMsgOut" class="text-white text-sm"></p>
+  </div>
+  <p class="mt-6 text-sm opacity-80">Unofficial community guide. Information may change — verify fees, hours and access with the Sariaya local government (sariaya.gov.ph).</p>
+ </div>
+</section>
+
+<div id="modal" onclick="if(event.target===this)closeM()"><div id="mbody" class="max-w-xl mx-auto bg-white rounded-2xl overflow-hidden my-8"></div></div>
+
+<script src="script.js"></script></body></html>
